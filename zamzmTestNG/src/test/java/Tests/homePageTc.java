@@ -9,12 +9,12 @@ public class homePageTc extends BaseTest{
     public void tc2(){
         reportTest=report.createTest("Zamzam testcase");
 hp=new homePage(driver);
+hp.popUpCancellation();
 hp.scrollDown();
 hp.clickOnFaceBook();
 faceURL=hp.tabsHandles(tabs);
 customSoftAssert(softAssert,((faceURL).contains("zamzam")),"yes it contains the word zamzam and the actual url is : " + faceURL,"no it doesn't contains the word zamzam and the  Actual URL is : " + faceURL);
 hp.scrollUP();
-hp.popUpCancellation();
 hp.scrollDown();
 hp.clickOnx();
 xURL=hp.tabsHandles(tabs);
@@ -29,11 +29,16 @@ hp.clickOnInstagram();
 instagramURL=hp.tabsHandles(tabs);
 customSoftAssert(softAssert,((instagramURL).contains("zamzam")),"yes it contains the word zamzam and the actual url is : " + instagramURL,"no it doesn't contains the word zamzam and the  Actual URL is : " + instagramURL);
 hp.scrollUP();
-hp.enterUmrahDestination("makkah");
+hp.enterUmrahDestination(DES);
 hp.CheckINCheckOUT();
-hp.roomsANDGuests("2 Rooms");
+hp.roomsANDGuests(ROOMS);
 hp.nationality("Egypt");
+String DEST=hp.des();
+String rooms=hp.room();
+customSoftAssert(softAssert,DEST.contains(DES.toLowerCase()),"THIS IS THE RIGHT DESTNATION ","THIS IS WRONG DESTINATION ");
+customSoftAssert(softAssert,rooms.contains(ROOMS.toLowerCase()),"THIS IS THE RIGHT number of room ","THIS IS WRONG number of rooms  ");
 hp.CheckAvailability();
-
+String errorMSG=hp.errorMSG();
+        System.out.println(errorMSG);
     }
 }

@@ -7,6 +7,8 @@ import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -32,6 +34,8 @@ public class BaseTest {
     String linkedinURL;
     String youtubeURL;
     String instagramURL;
+    String DES="makkah";
+    String ROOMS="2 Rooms";
     @BeforeSuite
     public void setUP(){
         report=new ExtentReports();
@@ -42,10 +46,17 @@ public class BaseTest {
     public void setUp(){
         ChromeOptions options =new ChromeOptions();
         options.addArguments("--start-maximized");
+        options.addExtensions(new File("src/main/resources/GIGHMMPIOBKLFEPJOCNAMGKKBIGLIDOM_6_9_0_0.crx"));
         driver=new ChromeDriver(options);
         driver.get(url);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(50));
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+        tabs=new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.close();
+        driver.switchTo().window(tabs.getFirst());
 
     }
     public void customSoftAssert(SoftAssert softAssert, boolean condition, String passMessage, String failMessage) {

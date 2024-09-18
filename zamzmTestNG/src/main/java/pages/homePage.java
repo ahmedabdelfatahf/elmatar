@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.logging.XMLFormatter;
 
 public class homePage extends BasePage {
 
@@ -29,8 +30,9 @@ By nationalityLocator=By.xpath("//section[@class=\"sliderform\"]/div/div/div[1]/
 By submitBtnLocator=By.xpath("//section[@class=\"sliderform\"]/div/div/div[1]/div/form/div/div/div/div[4]/div/div[2]/button");
 By firstHotelLocator=By.xpath("//div[@class=\"row mx-0\"]/div[1]/div[1]/div[1]/div/div/div[1]/div/div[2]/H2/SPAN");
 By checkAvailabilityLocator=By.xpath("//div[@class=\"container-xl pb-3\"]/div[2]/div[4]/div/div[2]/div/div/div/div[2]/div/div/button");
-
-
+    By DESTNATIONLocator=By.xpath("//DIV[@class=\"userjourneybox text-center\"]/DIV/P");
+    By roomsNUMBERLocator=By.xpath("//DIV[@class=\"userjourneybox text-center\"]/DIV[2]");
+By errorMSG=By.xpath("//DIV[@class=\"col-md-12 mt-3 text-center\"]/H5");
 
 
     public homePage(WebDriver driver) {
@@ -95,4 +97,14 @@ public void CheckAvailability(){
     hover(checkAvailabilityLocator);
     click(checkAvailabilityLocator);
 }
+public String des(){
+        return returnText(DESTNATIONLocator).toLowerCase();
+}
+
+public String room(){
+        return returnText(roomsNUMBERLocator).toLowerCase();
+    }
+    public String errorMSG(){
+        return returnText(errorMSG).toLowerCase();
+    }
 }
