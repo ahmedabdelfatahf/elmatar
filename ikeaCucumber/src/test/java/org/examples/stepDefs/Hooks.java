@@ -9,15 +9,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class Hooks {
     public static WebDriver driver;
     public static String URL="https://www.ikea.com/eg/en/";
-
+    static ArrayList<String> tabs ;
     @Before
     public static void setUp(){
         ChromeOptions options = new ChromeOptions();
@@ -28,13 +31,19 @@ public class Hooks {
                 "autofill.profile_enabled", false,
                 "autofill.address_enabled", false
         ));
+        options.addExtensions(new File("src/main/resources/features/GIGHMMPIOBKLFEPJOCNAMGKKBIGLIDOM_6_9_0_0.crx"));
         driver=new ChromeDriver(options);
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
-
         driver.get(URL);
+        WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+        tabs=new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        driver.close();
+        driver.switchTo().window(tabs.getFirst());
     }
 //    public static void clearCookie() {
 //        JavascriptExecutor js = (JavascriptExecutor) driver;

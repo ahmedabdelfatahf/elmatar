@@ -82,7 +82,6 @@ public class homeTest {
     public void clickOnHomepageIcon() {
         hp.homepage.click();
     }
-
     @And("Scroll down to “Trending categories at New lower price“.")
     public void scrollDownToTrendingCategoriesAtNewLowerPrice() {
         wait =new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -138,7 +137,6 @@ hp.highToLowFilter.click();
         }
 
     }
-
     @And("Compare every product in the cart with product details Price and Name.")
     public void compareEveryProductInTheCartWithProductDetailsPriceAndName() {
         for (int counter =0;counter<namesAfterCart.length;counter++){
@@ -146,9 +144,7 @@ hp.highToLowFilter.click();
             softAssert.assertEquals(pricesAfterCart[counter],pricesBeforeCart[counter]);
             softAssert.assertAll();
         }
-
     }
-
     @And("Check that the total price in the cart is calculated correctly.")
     public void checkThatTheTotalPriceInTheCartIsCalculatedCorrectly() {
         for (int counter=0;counter<pricesAfterCart.length;counter++){
