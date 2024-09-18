@@ -57,7 +57,6 @@ public class BaseTest {
         driver.switchTo().window(tabs.get(1));
         driver.close();
         driver.switchTo().window(tabs.getFirst());
-
     }
     public void customSoftAssert(SoftAssert softAssert, boolean condition, String passMessage, String failMessage) {
         softAssert.assertTrue(condition, failMessage);
