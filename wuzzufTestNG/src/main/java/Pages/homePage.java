@@ -19,26 +19,34 @@ By searchBtnLocator=By.cssSelector("button[class=\"css-11qi1o ezfki8j0\"]");
 By datePostedLocator=By.cssSelector("div[class=\"css-18uqayh\"] h3");
 By pastWeekFilterLocator=By.xpath("//aside[@class=\"css-1r78b37\"]/div[1]/div[10]/div/div[3]");
 By loadingLocator=By.cssSelector("div[class=\"entry-loader js-entry-loader\"]");
+By loadingLocator2=By.xpath("//div[@class=\"css-m16exc\"]/div");
+
 By jobsFoundLocator=By.xpath("//div[@class=\"css-9i2afk\"]/div[1]/div[3]/span[2]/strong");
-By firstJobLOCATOR= By.cssSelector("h2[class=\"css-m604qf\"] a[href=\"https://wuzzuf.net/jobs/p/gsAhq2vI4FGP-Performance-Test-Engineer-qTech-Dakahlia-Egypt\"]");
+By firstJobLOCATOR= By.xpath("//div[@class=\"css-9i2afk\"]/div[2]/div[1]/div/div[1]/h2/a");
 By applyBtnLocator=By.cssSelector("button[class=\"css-1m0yk35 ezfki8j0\"]");
 By firstNameLocator=By.xpath("//div[@class=\"css-ql17ak\"]/div/div[2]/div[1]/form/div[1]/div[1]/div[2]/input");
 By lastNameLocator=By.xpath("//div[@class=\"css-ql17ak\"]/div/div[2]/div[1]/form/div[1]/div[2]/div[2]/input");
 By emailLocator=By.xpath("//div[@class=\"css-ql17ak\"]/div/div[2]/div[1]/form/div[2]/div[2]/input");
 By passwordLocator=By.xpath("//div[@class=\"css-ql17ak\"]/div/div[2]/div[1]/form/div[3]/div[2]/div[1]/div/input");
 By signupLocator=By.xpath("//div[@class=\"css-ql17ak\"]/div/div[2]/div[1]/form//button[@class=\"css-6lejne ezfki8j0\"]");
-public void enterSearchData(){
-    write(searchLocator,"Software testing");
+By searchInputLocator=By.xpath("//div[@class=\"css-ryrhs0\"]/div/h1");
+
+
+
+public void enterSearchData(String data){
+    write(searchLocator,data);
     click(searchBtnLocator);
 }
-public void filter(){
-invisibleWait(loadingLocator);
+public String filter(){
+    String searchINPUT =returnText(searchInputLocator);
+invisibleWait(loadingLocator2);
     hover(datePostedLocator);
     click(datePostedLocator);
     click(pastWeekFilterLocator);
+    return searchINPUT;
 }
 public String jobsFound(){
-   invisibleWait(loadingLocator);
+   invisibleWait(loadingLocator2);
  return returnText(jobsFoundLocator);
 }
 public void firstJob(){

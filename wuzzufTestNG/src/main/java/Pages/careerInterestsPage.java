@@ -59,6 +59,8 @@ By expectedSalaryLocator=By.xpath("//div[@class=\"css-18m31da\"]/div/div/div[3]/
 By savingMSgLocator=By.xpath("//div[@class=\"css-18m31da\"]/div/div/div[4]/span/i");
 By submitApplicationLocator=By.xpath("//div[@class=\"css-1v4zzr\"]/form/div[2]/div//button[@class=\"css-9n63zc ezfki8j0\"]");
 By INDLocator=By.xpath("//div[@class=\"css-1v4zzr\"]/form/h2");
+By hireYouMsg=By.xpath("//div[@class=\"css-18m31da\"]/div/div[2]/div[3]/textarea");
+By submitApplication=By.xpath("//div[@class=\"ReactModal__Content ReactModal__Content--after-open css-jyixk9 e77fxam1\"]/div/button[1]");
 public void step1(String salary){
 click(careerLevelLocator);
 click(jobTypeLocator);
@@ -110,12 +112,17 @@ driver.findElement(cvUploadLocator).sendKeys(cv);
 click(getStartedBtnLocator);
 click(getStartedBtnLocator);
 }
-public void apply(String salary){
-    write(expectedSalaryLocator,salary);
-    click(INDLocator);
- visibleWait(savingMSgLocator);
-        click(submitApplicationLocator);
-
+public void apply(){
+//    write(expectedSalaryLocator,salary);
+//    click(INDLocator);
+// visibleWait(savingMSgLocator);
+// write(hireYouMsg,msg);
+//    click(INDLocator);
+//    visibleWait(savingMSgLocator);
+    visibleWait(submitApplicationLocator);
+    click(submitApplicationLocator);
+    visibleWait(submitApplication);
+    click(submitApplication);
 }
 
 
